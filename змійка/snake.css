@@ -1,0 +1,58 @@
+body{
+    background-color: rgba(17, 93, 17, 0.562);
+    display: flex;
+    justify-content: center ;
+}
+.buttons{
+    margin-left: 20px;
+    margin-top: 70px ;
+}
+#field{
+    background-color: white;
+    display: flex;
+    flex-wrap: wrap;
+    
+    margin-top: 50px;
+    width: 500px;
+    height: 500px;
+}
+.exel{
+    height: 50px;
+    width: 50px;
+
+}
+.snakehad{
+    background-image: url(snakehad.png);
+    background-size: cover;
+}
+.snakebody{
+    background-color: #1cb34b;
+}
+.apple{
+    background-image: url(apple.png);
+    background-size: cover;
+}
+#startbutton{
+    height: 30px;
+    width: 100px;
+    background-color: white;
+    border-radius: 6px;
+    color: #1cb34b;
+    font-size:15px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+    
+}
+#pausebutton{
+    height: 30px;
+    width: 100px;
+    background-color: white;
+    border-radius: 6px;
+    color: #1cb34b;
+    font-size:15px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+}

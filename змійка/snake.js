@@ -46,63 +46,86 @@ let field=document.getElementById("field");
     let apple=document.querySelector('[x="'+ cordinatesaApple[0] +'"][y= "'+ cordinatesaApple[1] +'"]') ;
     
     apple.classList.add("apple");
-
+    
 document.getElementById("startbutton").onclick=()=>{
-   let interval =window.setInterval( function(){
-        newHeadPosition=document.querySelector('[x="'+ (parseInt(snakeHead[0].getAttribute("x"))+1) +'"][y= "'+ (parseInt(snakeHead[0].getAttribute('y'))) +'"]');
+   
+    function NiceCode(newHeadPosition){
+        try{
+            if(snakeHead.indexOf(document.querySelector('[x="'+ parseInt(newHeadPosition.getAttribute("x")) +'"][y= "'+ parseInt(newHeadPosition.getAttribute("y")) +'"]'))!=-1){
+            // alert("dead");
+            window.location.reload();
+
+            
+        }
         newHeadPosition.classList.add("snakehad");
         snakeHead[0].classList.remove("snakehad");
         snakeHead[0].classList.add("snakebody");
         snakeHead.unshift(newHeadPosition); 
+        if(newHeadPosition!=apple ){
+            snakeHead[snakeHead.length-1].classList.remove("snakebody")
+            snakeHead.pop();
+        }
+        if(newHeadPosition==apple){
+            apple.classList.remove("apple");
+             cordinatesaApple=createApple();
+             apple=document.querySelector('[x="'+ cordinatesaApple[0] +'"][y= "'+ cordinatesaApple[1] +'"]') ;
+             apple.classList.add("apple");}
+        }
+        catch(err){
+            // alert("dead");
+            window.location.reload();
+
+        }
+        
+    }
+   let interval =window.setInterval( function(){
+       try{
+           newHeadPosition=document.querySelector('[x="'+ (parseInt(snakeHead[0].getAttribute("x"))+1) +'"][y= "'+ (parseInt(snakeHead[0].getAttribute('y'))) +'"]');
+    newHeadPosition.classList.add("snakehad");
+    snakeHead[0].classList.remove("snakehad");
+    snakeHead[0].classList.add("snakebody");
+    snakeHead.unshift(newHeadPosition); 
+    if(newHeadPosition!=apple){
         snakeHead[snakeHead.length-1].classList.remove("snakebody")
         snakeHead.pop();
-        } , 500) ; 
+    }
+    else{
+        apple.classList.remove("apple");
+         cordinatesaApple=createApple();
+         apple=document.querySelector('[x="'+ cordinatesaApple[0] +'"][y= "'+ cordinatesaApple[1] +'"]') ;
+         apple.classList.add("apple");}}
+    catch(err){
+// alert("dead");
+window.location.reload();
+
+    }
+
+    } , 500) ; 
+       
     
+    
+    
+      
     
         function movesOfSnake(event){
-            try{
+            // try{
         if(event.key=='ArrowLeft' || event.key=='a'  ){
             if(!(parseInt(snakeHead[0].getAttribute("y"))==parseInt(snakeHead[1].getAttribute("y")) && parseInt(snakeHead[0].getAttribute("x"))-parseInt(snakeHead[1].getAttribute('x'))==1)){
                 clearInterval(interval);
-                let newHeadPosition=document.querySelector('[x="'+ (snakeHead[0].getAttribute("x")-1) +'"][y= "'+ (parseInt(snakeHead[0].getAttribute('y'))) +'"]');
-                newHeadPosition.classList.add("snakehad");
-                snakeHead[0].classList.remove("snakehad");
-                snakeHead[0].classList.add("snakebody");
-                snakeHead.unshift(newHeadPosition); 
-                if(newHeadPosition!=apple){
-                    snakeHead[snakeHead.length-1].classList.remove("snakebody")
-                    snakeHead.pop();
-                }
-    
-                else{
-                    apple.classList.remove("apple");
-                     cordinatesaApple=createApple();
-                     apple=document.querySelector('[x="'+ cordinatesaApple[0] +'"][y= "'+ cordinatesaApple[1] +'"]') ;
-                     apple.classList.add("apple");
-                }
-                try{
+                
+                    newHeadPosition=document.querySelector('[x="'+ (snakeHead[0].getAttribute("x")-1) +'"][y= "'+ (parseInt(snakeHead[0].getAttribute('y'))) +'"]');
+                
+                
+                NiceCode(newHeadPosition);
+                
                     interval =window.setInterval( function(){
-                newHeadPosition=document.querySelector('[x="'+ (snakeHead[0].getAttribute("x")-1) +'"][y= "'+ (parseInt(snakeHead[0].getAttribute('y'))) +'"]');
-                newHeadPosition.classList.add("snakehad");
-                snakeHead[0].classList.remove("snakehad");
-                snakeHead[0].classList.add("snakebody");
-                snakeHead.unshift(newHeadPosition); 
-                if(newHeadPosition!=apple){
-                    snakeHead[snakeHead.length-1].classList.remove("snakebody")
-                    snakeHead.pop();
-                }
-    
-                else{
-                    apple.classList.remove("apple");
-                     cordinatesaApple=createApple();
-                     apple=document.querySelector('[x="'+ cordinatesaApple[0] +'"][y= "'+ cordinatesaApple[1] +'"]') ;
-                     apple.classList.add("apple");
-                }
+                        
+                            newHeadPosition=document.querySelector('[x="'+ (snakeHead[0].getAttribute("x")-1) +'"][y= "'+ (parseInt(snakeHead[0].getAttribute('y'))) +'"]');
+                        
+                NiceCode(newHeadPosition);
                 } , 500) ; 
-                }
-                catch(err){
-                    alert("сука");
-                }
+                
+                
                  
     
                 
@@ -117,39 +140,15 @@ document.getElementById("startbutton").onclick=()=>{
                 clearInterval(interval);
                     newHeadPosition=document.querySelector('[x="'+ snakeHead[0].getAttribute("x") +'"][y= "'+ (parseInt(snakeHead[0].getAttribute('y'))+1) +'"]');
     
-                
-                    newHeadPosition.classList.add("snakehad");
-                    snakeHead[0].classList.remove("snakehad");
-                    snakeHead[0].classList.add("snakebody");
-                    snakeHead.unshift(newHeadPosition); 
-                    if(newHeadPosition!=apple){
-                        snakeHead[snakeHead.length-1].classList.remove("snakebody")
-                        snakeHead.pop();
-                    }
-        
-                    else{
-                        apple.classList.remove("apple");
-                         cordinatesaApple=createApple();
-                         apple=document.querySelector('[x="'+ cordinatesaApple[0] +'"][y= "'+ cordinatesaApple[1] +'"]') ;
-                         apple.classList.add("apple");
-                    }
+                    NiceCode(newHeadPosition);
+                    
+
                      interval =window.setInterval( function(){
+                        
                         newHeadPosition=document.querySelector('[x="'+ snakeHead[0].getAttribute("x") +'"][y= "'+ (parseInt(snakeHead[0].getAttribute('y'))+1) +'"]');
-                        newHeadPosition.classList.add("snakehad");
-                        snakeHead[0].classList.remove("snakehad");
-                        snakeHead[0].classList.add("snakebody");
-                        snakeHead.unshift(newHeadPosition); 
-                        if(newHeadPosition!=apple){
-                            snakeHead[snakeHead.length-1].classList.remove("snakebody")
-                            snakeHead.pop();
-                        }
-            
-                        else{
-                            apple.classList.remove("apple");
-                             cordinatesaApple=createApple();
-                             apple=document.querySelector('[x="'+ cordinatesaApple[0] +'"][y= "'+ cordinatesaApple[1] +'"]') ;
-                             apple.classList.add("apple");
-                        }
+                        NiceCode(newHeadPosition);
+                        
+
                         } , 500) ; 
             }
      
@@ -163,39 +162,13 @@ document.getElementById("startbutton").onclick=()=>{
                     newHeadPosition=document.querySelector('[x="'+ snakeHead[0].getAttribute("x") +'"][y= "'+ (parseInt(snakeHead[0].getAttribute('y'))-1) +'"]');
     
                 
-                    newHeadPosition.classList.add("snakehad");
-                    snakeHead[0].classList.remove("snakehad");
-                    snakeHead[0].classList.add("snakebody");
-                    snakeHead.unshift(newHeadPosition); 
-                    if(newHeadPosition!=apple){
-                        snakeHead[snakeHead.length-1].classList.remove("snakebody")
-                        snakeHead.pop();
-                    }
-        
-                    else{
-                        apple.classList.remove("apple");
-                         cordinatesaApple=createApple();
-                         apple=document.querySelector('[x="'+ cordinatesaApple[0] +'"][y= "'+ cordinatesaApple[1] +'"]') ;
-                         apple.classList.add("apple");
-                    }
+                    NiceCode(newHeadPosition);
                     interval =window.setInterval( function(){
+                        
                         newHeadPosition=document.querySelector('[x="'+ snakeHead[0].getAttribute("x") +'"][y= "'+ (parseInt(snakeHead[0].getAttribute('y'))-1) +'"]');
-                        newHeadPosition.classList.add("snakehad");
-                        snakeHead[0].classList.remove("snakehad");
-                        snakeHead[0].classList.add("snakebody");
-                        snakeHead.unshift(newHeadPosition); 
-                        if(newHeadPosition!=apple){
-                            snakeHead[snakeHead.length-1].classList.remove("snakebody")
-                            snakeHead.pop();
-                        }
-            
-                        else{
-                            apple.classList.remove("apple");
-                             cordinatesaApple=createApple();
-                             apple=document.querySelector('[x="'+ cordinatesaApple[0] +'"][y= "'+ cordinatesaApple[1] +'"]') ;
-                             apple.classList.add("apple");
-                        }
+                        NiceCode(newHeadPosition);
                         } , 500) ; 
+                        
             }
      
             
@@ -205,52 +178,25 @@ document.getElementById("startbutton").onclick=()=>{
                 clearInterval(interval);
                     newHeadPosition=document.querySelector('[x="'+ (parseInt(snakeHead[0].getAttribute("x"))+1) +'"][y= "'+ (parseInt(snakeHead[0].getAttribute('y'))) +'"]');
     
-                
-                    newHeadPosition.classList.add("snakehad");
-                    snakeHead[0].classList.remove("snakehad");
-                    snakeHead[0].classList.add("snakebody");
-                    snakeHead.unshift(newHeadPosition); 
-                    if(newHeadPosition!=apple){
-                        snakeHead[snakeHead.length-1].classList.remove("snakebody")
-                        snakeHead.pop();
-                    }
-        
-                    else{
-                        apple.classList.remove("apple");
-                         cordinatesaApple=createApple();
-                         apple=document.querySelector('[x="'+ cordinatesaApple[0] +'"][y= "'+ cordinatesaApple[1] +'"]') ;
-                         apple.classList.add("apple");
-                    }
+                    NiceCode(newHeadPosition);
                     interval =window.setInterval( function(){
                         newHeadPosition=document.querySelector('[x="'+ (parseInt(snakeHead[0].getAttribute("x"))+1) +'"][y= "'+ (parseInt(snakeHead[0].getAttribute('y'))) +'"]');
-                        newHeadPosition.classList.add("snakehad");
-                        snakeHead[0].classList.remove("snakehad");
-                        snakeHead[0].classList.add("snakebody");
-                        snakeHead.unshift(newHeadPosition); 
-                        if(newHeadPosition!=apple){
-                            snakeHead[snakeHead.length-1].classList.remove("snakebody")
-                            snakeHead.pop();
-                        }
-            
-                        else{
-                            apple.classList.remove("apple");
-                             cordinatesaApple=createApple();
-                             apple=document.querySelector('[x="'+ cordinatesaApple[0] +'"][y= "'+ cordinatesaApple[1] +'"]') ;
-                             apple.classList.add("apple");
-                        }
+                        NiceCode(newHeadPosition);
                         } , 500) ; 
             }
             
      
             
         }
+    // }
+    // catch(err){
+    //     alert("dead");
+    // }
     }
-    catch(err){
-        alert("dead");
-    }
-    }
-    
+
+      
     document.addEventListener('keyup',  movesOfSnake);
+
 }
 
 
@@ -260,3 +206,8 @@ document.getElementById("startbutton").onclick=()=>{
 
 
 
+// document.getElementById("pausebutton").onclick=()=>{
+    
+    
+
+// }

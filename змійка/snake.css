@@ -1,8 +1,10 @@
 body{
     background-color: rgba(17, 93, 17, 0.562);
+
     display: flex;
     justify-content: center ;
 }
+
 .buttons{
     margin-left: 20px;
     margin-top: 70px ;
@@ -13,12 +15,13 @@ body{
     flex-wrap: wrap;
     
     margin-top: 50px;
-    width: 500px;
-    height: 500px;
+
+    /* height: 500px;
+    width: 1500px; */
 }
 .exel{
     height: 50px;
-    width: 50px;
+width: 50px;
 
 }
 .snakehad{
@@ -43,6 +46,7 @@ body{
     border: none;
     cursor: pointer;
     margin-right: 10px;
+    outline: none;
     
 }
 #pausebutton{
@@ -55,4 +59,22 @@ body{
     font-weight: bold;
     border: none;
     cursor: pointer;
+    outline: none;
+}
+input{
+    width: 50px;
+    height: 20px;
+    margin-top: 10px;
+    border: none;
+
+    border-radius: 6px;
+    outline: none;
+}
+
+
+label{
+    color: white;
+}
+#inputs{
+    margin-left: 20px;
 }
